@@ -7,10 +7,13 @@ const { parsed: localEnv } = dotenvConfig({
   path: `.env.${process.env.NEXT_APP_ENVIRONMENT === "Production" ? "production" : "development"}`,
 }) || {};
 
+// Ensure localEnv is always an object (empty object if undefined)
+const env = localEnv || {};
+
 const nextConfig: NextConfig = {
   productionBrowserSourceMaps: true,
   output: "export",
-  env: localEnv,
+  env, // Use the fallback env object here
   eslint: {
     ignoreDuringBuilds: true, // Disable ESLint during builds (not recommended for production)
   },
@@ -22,10 +25,10 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  
+
   webpack(config) {
     config.plugins = config.plugins || [];
-    config.plugins.push(new webpack.EnvironmentPlugin(localEnv));
+    config.plugins.push(new webpack.EnvironmentPlugin(env)); // Use the fallback env object here
     return config;
   },
 };
