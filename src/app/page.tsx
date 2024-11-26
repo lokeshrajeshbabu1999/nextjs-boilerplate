@@ -9,7 +9,7 @@ export default function HomePage() {
   const router = useRouter();
 
   const handleGuideClick = (source, guide_id) => {
-    let pathGuide = `/guide/view?src=${source}&id=${guide_id}`;
+    const pathGuide = `/guide/view?src=${source}&id=${guide_id}`;
     router.push(pathGuide);
   };
   return (

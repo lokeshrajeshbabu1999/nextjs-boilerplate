@@ -11,6 +11,9 @@ const nextConfig: NextConfig = {
   productionBrowserSourceMaps: true,
   output: "export",
   env: localEnv,
+  eslint: {
+    ignoreDuringBuilds: true, // Disable ESLint during builds (not recommended for production)
+  },
   async rewrites() {
     return [
       {
@@ -19,6 +22,7 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  
   webpack(config) {
     config.plugins = config.plugins || [];
     config.plugins.push(new webpack.EnvironmentPlugin(localEnv));

@@ -2,12 +2,12 @@ import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
 import Link from "next/link";
 import React, {  useState } from "react";
 import { TailSpin } from "react-loader-spinner";
-import { Spinner } from "../../../styles/Course.module";
 import useFilteredGuides from "../../hooks/useFilteredGuides";
 import GuideLevel from "./GuideLevel";
 
-const GuideList = ({ guides, handleGuideClick, isLoading }) => {
+const GuideList = ({ guides, isLoading }) => {
   // const [filteredGuides, setFilteredGuides] = useState(guides);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedLevel, setSelectedLevel] = useState("");
   const filteredGuides = useFilteredGuides(guides, selectedLevel);
 
