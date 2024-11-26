@@ -1,37 +1,30 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
 import Link from "next/link";
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { TailSpin } from "react-loader-spinner";
 import useFilteredGuides from "../../hooks/useFilteredGuides";
 import GuideLevel from "./GuideLevel";
 
-const GuideList = ({ guides, isLoading }) => {
-  // const [filteredGuides, setFilteredGuides] = useState(guides);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+// Define the shape of the guide object
+interface Guide {
+  guide_id: string;
+  title: string;
+  description: string;
+  level: "beginner" | "intermediate" | "advanced";  // Adjust based on your data
+  active: boolean;
+  source: string;
+}
+
+// Define the shape of the props for the GuideList component
+interface GuideListProps {
+  guides: Guide[];   // Array of Guide objects
+  isLoading: boolean; // Boolean to indicate loading state
+}
+
+const GuideList: React.FC<GuideListProps> = ({ guides, isLoading }) => {
   const [selectedLevel, setSelectedLevel] = useState("");
   const filteredGuides = useFilteredGuides(guides, selectedLevel);
-
-
-  // FIXME - Move this hook to a seperate fle
-  // useEffect(() => {
-  //   let activeGuides = guides.filter((guide) => guide.active === true);
-  //   if (selectedLevel) {
-  //     activeGuides = activeGuides.filter(
-  //       (guide) => guide.level === selectedLevel
-  //     );
-  //   }
-  //   setFilteredGuides(activeGuides);
-  // }, [selectedLevel, guides]);
-
-  // const levelMap = [
-  //   { key: "beginner", value: "Beginner" },
-  //   { key: "intermediate", value: "Intermediate" },
-  //   { key: "advanced", value: "Advanced" },
-  // ];
-
-  // const onLevelSelection = (level) => {
-  //   setSelectedLevel(level);
-  // };
 
   const displayResult = () => {
     return (
@@ -64,17 +57,12 @@ const GuideList = ({ guides, isLoading }) => {
                     component="div"
                     sx={{ flexGrow: 1, textAlign: "left" }}
                   >
-                    <Typography component="span"
-                      sx={{ fontWeight: "bold", color:"guideLink.primary"}}>
+                    <Typography component="span" sx={{ fontWeight: "bold", color: "guideLink.primary" }}>
                       {guide.title}
                     </Typography>
                   </Link>
                 </Box>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  component="span"
-                >
+                <Typography variant="body2" color="text.secondary" component="span">
                   {guide.description}
                 </Typography>
               </CardContent>
@@ -84,12 +72,9 @@ const GuideList = ({ guides, isLoading }) => {
       </Grid>
     );
   };
+
   const loadSpinner = () => {
-    return (
-      // <Spinner>
-        <TailSpin />
-      // </Spinner>
-    );
+    return <TailSpin />;
   };
 
   return (
