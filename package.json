@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "NEXT_APP_ENVIRONMENT=development next dev",
-    "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "eslint .",
+    "build": "DISABLE_ESLINT=true next build"
+    
   },
   "dependencies": {
     "@emotion/react": "^11.13.5",
