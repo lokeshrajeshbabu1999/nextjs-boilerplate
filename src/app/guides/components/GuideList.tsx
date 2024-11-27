@@ -45,6 +45,8 @@ const GuideList: React.FC<GuideListProps> = ({ guides, isLoading }) => {
                   <GuideLevel guide={guide} />
                 </Typography>
                 <Box component="div" sx={{ display: "flex", alignItems: "center" }}>
+                {/* <Link href={`/guide-api/guide/list?guide_id=${guide.guide_id}`} passHref> */}
+
                   <Link href={`https://skillhunt-knowledge-base.s3.ap-south-1.amazonaws.com/spring_boot_gradle.md`} passHref>
                     <Typography
                       component="a" 
