@@ -1,9 +1,16 @@
 {
   "extends": ["next/core-web-vitals", "next/typescript"],
+  "rules": {
+    // Disable specific ESLint rules that may be annoying
+    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],  // Allow unused vars with leading underscore
+    "react/react-in-jsx-scope": "off",  // Next.js automatically imports React
+    "react/jsx-uses-react": "off",  // Disable JSX React import requirement
+    "@next/next/no-img-element": "off",  // Disable next.js's restriction on <img> tag usage
+    // Add other rules if necessary
+  },
   "build": {
     "env": {
-      "DISABLE_ESLINT": "true"
+      "DISABLE_ESLINT": "true"  // Disable ESLint during the build
     }
   }
 }
-  

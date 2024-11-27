@@ -1,2 +1,9 @@
-    /* 
-    public/* 
+# Ignore build files
+.next/*
+node_modules/*
+out/*
+public/*
+# Ignore test files or temporary files
+*.test.ts
+*.test.tsx
+*.log
