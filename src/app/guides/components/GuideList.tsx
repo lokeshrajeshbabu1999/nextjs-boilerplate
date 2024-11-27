@@ -31,7 +31,7 @@ const GuideList: React.FC<GuideListProps> = ({ guides, isLoading }) => {
   const displayResult = () => {
     return (
       <Grid container spacing={1} sx={{ marginTop: 1 }}>
-        {filteredGuides.map((guide: Guide) => (//+
+        {filteredGuides.map((guide: Guide) => (
           <Grid item md={4} key={guide.guide_id}>
             <Card variant="outlined">
               <CardContent>
@@ -51,12 +51,17 @@ const GuideList: React.FC<GuideListProps> = ({ guides, isLoading }) => {
                       pathname: "/guide/view",
                       query: { src: guide.source, id: guide.guide_id },
                     }}
-                    style={{ textDecoration: "none" }}
-                    color="tertiary"
-                    component="div"
-                    sx={{ flexGrow: 1, textAlign: "left" }}
+                    passHref // Ensures that the anchor tag is wrapped correctly
                   >
-                    <Typography component="span" sx={{ fontWeight: "bold", color: "guideLink.primary" }}>
+                    {/* Wrap the Link component with an anchor tag */}
+                    <Typography
+                      component="a" // Use 'a' for the anchor tag
+                      sx={{
+                        fontWeight: "bold",
+                        color: "guideLink.primary",
+                        textDecoration: "none", // Remove underline if you want
+                      }}
+                    >
                       {guide.title}
                     </Typography>
                   </Link>

@@ -2,10 +2,10 @@ import { marked } from "marked";
 import { useEffect, useState } from "react";
 import axiosGuide from "../api/axiosguide";
 
-const useArticle = (key) => {
+const useArticle = (key: unknown) => {
   const [userArticle, setUserArticle] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const loadGuide = (key) => {
+  const loadGuide = (key: any) => {
     axiosGuide
       .get("/article", {
         params: {
