@@ -1,29 +1,31 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TailSpin } from "react-loader-spinner";
 import useFilteredGuides from "../../hooks/useFilteredGuides";
 import GuideLevel from "./GuideLevel";
 
 // Define the shape of the guide object
 interface Guide {
-  guide_id: string;
+  guide_id: number;
   title: string;
   description: string;
-  level: "beginner" | "intermediate" | "advanced";  // Adjust based on your data
+  level: "beginner" | "intermediate" | "advanced";
   active: boolean;
   source: string;
 }
 
 // Define the shape of the props for the GuideList component
 interface GuideListProps {
-  guides: Guide[];   // Array of Guide objects
-  isLoading: boolean; // Boolean to indicate loading state
+  guides: Guide[];  // Expecting the full list of guides as a prop
+  isLoading: boolean; // Expecting a loading state as a prop
 }
 
 const GuideList: React.FC<GuideListProps> = ({ guides, isLoading }) => {
-  const [selectedLevel, setSelectedLevel] = useState("");
+  const [selectedLevel, setSelectedLevel] = useState<string>("");
+
+  // Use the custom hook to filter guides based on selectedLevel
   const filteredGuides = useFilteredGuides(guides, selectedLevel);
 
   const displayResult = () => {
@@ -43,10 +45,7 @@ const GuideList: React.FC<GuideListProps> = ({ guides, isLoading }) => {
                 >
                   <GuideLevel guide={guide} />
                 </Typography>
-                <Box
-                  component="div"
-                  sx={{ display: "flex", alignItems: "center" }}
-                >
+                <Box component="div" sx={{ display: "flex", alignItems: "center" }}>
                   <Link
                     href={{
                       pathname: "/guide/view",
