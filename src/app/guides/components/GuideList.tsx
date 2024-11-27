@@ -31,7 +31,7 @@ const GuideList: React.FC<GuideListProps> = ({ guides, isLoading }) => {
   const displayResult = () => {
     return (
       <Grid container spacing={1} sx={{ marginTop: 1 }}>
-        {filteredGuides.map((guide) => (
+        {filteredGuides.map((guide: Guide) => (//+
           <Grid item md={4} key={guide.guide_id}>
             <Card variant="outlined">
               <CardContent>
