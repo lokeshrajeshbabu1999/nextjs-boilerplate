@@ -3,11 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "NEXT_APP_ENVIRONMENT=development next dev",
+    "dev": "next dev",
     "start": "next start",
     "lint": "eslint .",
-    "build": "DISABLE_ESLINT=true next build"
-    
+    "build": "next build"
   },
   "dependencies": {
     "@emotion/react": "^11.13.5",
