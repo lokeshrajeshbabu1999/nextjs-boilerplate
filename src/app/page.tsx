@@ -1,8 +1,8 @@
 "use client"
 import { Container } from '@mui/material';
 import { useRouter } from 'next/navigation';
-import useUserGuides from './hooks/useUserGuides';
 import GuideList from './guides/components/GuideList';
+import useUserGuides from './guides/hooks/useUserGuides';
 
 export default function HomePage() {
   const [userGuide, isLoading] = useUserGuides();

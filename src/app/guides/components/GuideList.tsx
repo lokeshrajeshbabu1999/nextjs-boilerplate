@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { TailSpin } from "react-loader-spinner";
-import useFilteredGuides from "../../hooks/useFilteredGuides";
 import GuideLevel from "./GuideLevel";
+import useFilteredGuides from "../hooks/useFilteredGuides";
 
 // Define the shape of the guide object
 interface Guide {
@@ -46,20 +45,13 @@ const GuideList: React.FC<GuideListProps> = ({ guides, isLoading }) => {
                   <GuideLevel guide={guide} />
                 </Typography>
                 <Box component="div" sx={{ display: "flex", alignItems: "center" }}>
-                  <Link
-                    href={{
-                      pathname: "/guide/view",
-                      query: { src: guide.source, id: guide.guide_id },
-                    }}
-                    passHref // Ensures that the anchor tag is wrapped correctly
-                  >
-                    {/* Wrap the Link component with an anchor tag */}
+                  <Link href={`https://skillhunt-knowledge-base.s3.ap-south-1.amazonaws.com/spring_boot_gradle.md`} passHref>
                     <Typography
-                      component="a" // Use 'a' for the anchor tag
+                      component="a" 
                       sx={{
                         fontWeight: "bold",
                         color: "guideLink.primary",
-                        textDecoration: "none", // Remove underline if you want
+                        textDecoration: "none",
                       }}
                     >
                       {guide.title}
@@ -81,11 +73,7 @@ const GuideList: React.FC<GuideListProps> = ({ guides, isLoading }) => {
     return <TailSpin />;
   };
 
-  return (
-    <Typography component="span">
-      {isLoading ? loadSpinner() : displayResult()}
-    </Typography>
-  );
+  return <Typography component="span">{isLoading ? loadSpinner() : displayResult()}</Typography>;
 };
 
 export default GuideList;

@@ -1,6 +1,6 @@
 import { marked } from "marked";
 import { useEffect, useState } from "react";
-import axiosGuide from "../api/axiosguide";
+import axiosGuide from "../../api/axiosGuide";
 
 // Define the return type of the hook as a tuple: [string, boolean]
 const useArticle = (key: string | unknown) => {
